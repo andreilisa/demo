@@ -71,39 +71,9 @@
     <td>{{cats.id}}</td>
     <td>{{cats.name}}</td>
     <td>{{cats.color}}</td>
-    <i (click)="showModal()" nz-icon nzTheme="outline" nzType="eye" style="padding-right: 2em">
-      <nz-modal
-        [(nzVisible)]="isVisible"
-        nzTitle="Modal Title"
-        (nzOnCancel)="handleCancel()"
-        (nzOnOk)="handleOk()"
-        [nzOkLoading]="isOkLoading"
-      >
-        <p *nzModalContent>Modal Content</p>
-      </nz-modal>
-    </i>
-    <i (click)="showModal()" nz-icon nzTheme="outline" nzType="edit" style="padding-right: 2em">
-      <nz-modal
-        [(nzVisible)]="isVisible"
-        nzTitle="Modal Title"
-        (nzOnCancel)="handleCancel()"
-        (nzOnOk)="handleOk()"
-        [nzOkLoading]="isOkLoading"
-      >
-        <p *nzModalContent>Modal Content</p>
-      </nz-modal>
-    </i>
-    <i (click)="showModal()" nz-icon nzTheme="outline" nzType="delete" style="padding-right: 2em">
-      <nz-modal
-        [(nzVisible)]="isVisible"
-        nzTitle="Modal Title"
-        (nzOnCancel)="handleCancel()"
-        (nzOnOk)="handleOk()"
-        [nzOkLoading]="isOkLoading"
-      >
-        <p *nzModalContent>Modal Content</p>
-      </nz-modal>
-    </i>
+    <i nz-icon nzTheme="outline" nzType="eye" style="padding-right: 2em"></i>
+    <i (click)="updateTutorial()" nz-icon nzTheme="outline" nzType="edit" style="padding-right: 2em"></i>
+    <i (click)="deleteTutorial()" nz-icon nzTheme="outline" nzType="delete" style="padding-right: 2em"></i>
     <nz-divider nzType="vertical"></nz-divider>
 
   </tr>
