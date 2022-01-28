@@ -1,0 +1,65 @@
+<div style="width: 500px; margin: auto;">
+  <div *ngIf="currentCat" class="edit-form">
+    <h4>Product</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentCat.name"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="color">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="color"
+          [(ngModel)]="currentCat.color"
+          name="description"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+
+      </div>
+    </form>
+
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentCat.available"
+      (click)="setAvailableStatus(false)"
+    >
+      Set Not Available
+    </button>
+    <button
+      *ngIf="!currentCat.available"
+      class="badge badge-primary mr-2"
+      (click)="setAvailableStatus(true)"
+    >
+      Set Available
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteProduct()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success"
+      (click)="currentCat()"
+    >
+      Update
+    </button>
+    <p></p>
+  </div>
+
+  <div *ngIf="!currentCat">
+    <br />
+    <p>This product is not accessible</p>
+  </div>
+</div>

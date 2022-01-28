@@ -14,7 +14,7 @@ export class TypeListComponent implements OnInit {
   message = '';
   currentIndex = -1;
   name: '';
-  currentTutorial = null;
+  currentProduct = null;
   submitted = false;
   isVisible = false;
   isOkLoading = false;
@@ -69,15 +69,15 @@ export class TypeListComponent implements OnInit {
 
   updateCat(status): void {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
+      title: this.currentProduct.title,
+      description: this.currentProduct.description,
       published: status
     };
 
-    this.typeService.update(this.currentTutorial.id, data)
+    this.typeService.update(this.currentProduct.id, data)
       .subscribe(
         response => {
-          this.currentTutorial.published = status;
+          this.currentProduct.published = status;
           console.log(response);
         },
         error => {
@@ -86,7 +86,7 @@ export class TypeListComponent implements OnInit {
   }
 
   updateTutorial(): void {
-    this.typeService.update(this.currentTutorial.id, this.currentTutorial)
+    this.typeService.update(this.currentProduct.id, this.currentProduct)
       .subscribe(
         response => {
           console.log(response);
@@ -97,15 +97,12 @@ export class TypeListComponent implements OnInit {
         });
   }
 
-  deleteTutorial(): void {
-    this.typeService.delete(this.currentTutorial.id)
+  deleteTutorial(id: number): void {
+    this.typeService.delete(id)
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/cat']);
-        },
-        error => {
-          console.log(error);
+          this.cats = response;
         });
   }
 

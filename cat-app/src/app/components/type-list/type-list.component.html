@@ -67,13 +67,13 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let cats of cats">
-    <td>{{cats.id}}</td>
-    <td>{{cats.name}}</td>
-    <td>{{cats.color}}</td>
+  <tr *ngFor="let cat of cats">
+    <td>{{cat.id}}</td>
+    <td>{{cat.name}}</td>
+    <td>{{cat.color}}</td>
     <i nz-icon nzTheme="outline" nzType="eye" style="padding-right: 2em"></i>
     <i (click)="updateTutorial()" nz-icon nzTheme="outline" nzType="edit" style="padding-right: 2em"></i>
-    <i (click)="deleteTutorial()" nz-icon nzTheme="outline" nzType="delete" style="padding-right: 2em"></i>
+    <i (click)="deleteTutorial(cat.id)" nz-icon nzTheme="outline" nzType="delete" style="padding-right: 2em"></i>
     <nz-divider nzType="vertical"></nz-divider>
 
   </tr>
