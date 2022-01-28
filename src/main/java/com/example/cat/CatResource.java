@@ -1,8 +1,6 @@
 package com.example.cat;
 
-import com.example.type.Type;
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
-import org.jboss.logging.annotations.Param;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -11,7 +9,7 @@ import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/cat")
+@Path("/rest")
 public class CatResource {
 
     @GET
@@ -58,5 +56,11 @@ public class CatResource {
             throw new NotFoundException();
         }
         cat.delete();
+    }
+
+    @GET
+    @Path("/find/{name}")
+    public List<PanacheEntityBase> search(@PathParam("name") String name) {
+        return Cat.findByName(name);
     }
 }

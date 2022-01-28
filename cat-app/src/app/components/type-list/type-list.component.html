@@ -1,0 +1,111 @@
+<div class="col-md-8">
+  <div class="input-group mb-3">
+    <input [(ngModel)]="name" class="form-control"
+           placeholder="Search"
+           type="text"
+    />
+    <button (click)="searchByName()" class="btn btn-outline-secondary" nz-button
+            nzType="primary"
+            style="color: blue">
+      Search
+    </button>
+    <button (click)="showModal()" nz-button nzType="primary" style="margin-left:1200px;color: blue">
+      <span>New Cat</span>
+    </button>
+    <nz-modal
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="createCats()"
+      [(nzVisible)]="isVisible"
+      [nzOkLoading]="isOkLoading"
+      nzTitle="New Cat">
+      <div *nzModalContent>
+        <div style="width: 500px; margin: auto;">
+          <div class="submit-form">
+            <div *ngIf="!submitted">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  [(ngModel)]="cat.name"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                  type="text"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="color">Color</label>
+                <input
+                  [(ngModel)]="cat.color"
+                  class="form-control"
+                  id="color"
+                  name="color"
+                  required
+                />
+              </div>
+            </div>
+
+            <div *ngIf="submitted">
+              <h3>You successfully created a cat!</h3>
+              <button (click)="newProduct()" class="btn btn-success">New..</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nz-modal>
+  </div>
+</div>
+
+<nz-table>
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>Name</th>
+    <th>Color</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cats of cats">
+    <td>{{cats.id}}</td>
+    <td>{{cats.name}}</td>
+    <td>{{cats.color}}</td>
+    <i (click)="showModal()" nz-icon nzTheme="outline" nzType="eye" style="padding-right: 2em">
+      <nz-modal
+        [(nzVisible)]="isVisible"
+        nzTitle="Modal Title"
+        (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleOk()"
+        [nzOkLoading]="isOkLoading"
+      >
+        <p *nzModalContent>Modal Content</p>
+      </nz-modal>
+    </i>
+    <i (click)="showModal()" nz-icon nzTheme="outline" nzType="edit" style="padding-right: 2em">
+      <nz-modal
+        [(nzVisible)]="isVisible"
+        nzTitle="Modal Title"
+        (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleOk()"
+        [nzOkLoading]="isOkLoading"
+      >
+        <p *nzModalContent>Modal Content</p>
+      </nz-modal>
+    </i>
+    <i (click)="showModal()" nz-icon nzTheme="outline" nzType="delete" style="padding-right: 2em">
+      <nz-modal
+        [(nzVisible)]="isVisible"
+        nzTitle="Modal Title"
+        (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleOk()"
+        [nzOkLoading]="isOkLoading"
+      >
+        <p *nzModalContent>Modal Content</p>
+      </nz-modal>
+    </i>
+    <nz-divider nzType="vertical"></nz-divider>
+
+  </tr>
+  </tbody>
+</nz-table>
