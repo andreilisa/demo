@@ -22,7 +22,6 @@ export class TypeListComponent implements OnInit {
     name: '',
     color: '',
   };
-
   constructor(private router: Router, private typeService: TypeService, private route: ActivatedRoute,) {
   }
 

@@ -62,9 +62,9 @@
        style="padding-right: 2em">
       <nz-modal (nzOnCancel)="handleCancel2()" (nzOnOk)="handleOk2()" [(nzVisible)]="isVisible2" nzTitle="View">
         <ng-container *nzModalContent>
-          <p>Name:</p> <input [(ngModel)]="cat.id" disabled nz-input placeholder="Basic usage"/>
-          <p>Name:</p> <input [(ngModel)]="cat.name" disabled nz-input placeholder="Basic usage"/>
-          <p>Color:</p> <input [(ngModel)]="cat.color" disabled nz-input placeholder="Basic usage"/>
+          <p>Name:</p> <input [ngModel]="cat.id"  nz-input placeholder="Basic usage"/>
+          <p>Name:</p> <input [ngModel]="cat.name"  nz-input placeholder="Basic usage"/>
+          <p>Color:</p> <input [ngModel]="cat.color"  nz-input placeholder="Basic usage"/>
         </ng-container>
       </nz-modal>
     </i>
