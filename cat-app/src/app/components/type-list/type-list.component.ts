@@ -91,6 +91,7 @@ export class TypeListComponent implements OnInit {
 
   showModal(): void {
     this.isVisible = true;
+
   }
 
   showModal2(): void {
@@ -112,20 +113,14 @@ export class TypeListComponent implements OnInit {
   handleOk3(): void {
     this.isOkLoading = true;
     setTimeout(() => {
-      this.isVisible2 = false;
+      this.isVisible3 = false;
       this.isOkLoading = false;
     }, 3000);
   }
 
   handleCancel(): void {
     this.isVisible = false;
-  }
-
-  handleCancel2(): void {
     this.isVisible2 = false;
-  }
-
-  handleCancel3(): void {
     this.isVisible3 = false;
   }
 

@@ -61,7 +61,7 @@
     <i (click)="showModal2(); catsDetails(cats[i].id)" nz-icon nzTheme="outline" nzType="eye"
        style="padding-right: 2em;margin-right: 6px;
         font-size: 20px ">
-      <nz-modal (nzOnCancel)="handleCancel2()" (nzOnOk)="handleOk2()" [(nzVisible)]="isVisible2" nzTitle="View">
+      <nz-modal (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk2()" [(nzVisible)]="isVisible2" nzTitle="View">
         <ng-container *nzModalContent>
           <p>ID:</p> <input [ngModel]="cat.id"  nz-input placeholder="Id"/>
           <p>Name:</p> <input [ngModel]="cat.name"  nz-input placeholder="Name"/>
@@ -72,7 +72,7 @@
     <i (click)="showModal3();catsDetails(cats[i].id)" nz-icon nzTheme="outline" nzType="edit"
        style="padding-right: 2em;color: black;margin-right: 6px;
         font-size: 20px;">
-      <nz-modal (nzOnCancel)="handleCancel3()" (nzOnOk)="updateCats(cat.id)" [(nzVisible)]="isVisible3" nzTitle="View">
+      <nz-modal (nzOnCancel)="handleCancel()" (nzOnOk)="updateCats(cat.id)" [(nzVisible)]="isVisible3" nzTitle="View">
         <ng-container *nzModalContent>
           <p>ID:</p><input [(ngModel)]="cat.id" disabled nz-input placeholder="Basic usage"/>
           <p>Name:</p> <input [(ngModel)]="cat.name" nz-input placeholder="Basic usage" type="text" max="100" required>
