@@ -74,7 +74,7 @@
         font-size: 20px;">
       <nz-modal (nzOnCancel)="handleCancel()" (nzOnOk)="updateCats(cat.id)" [(nzVisible)]="isVisible3" nzTitle="View">
         <ng-container *nzModalContent>
-          <p>ID:</p><input [(ngModel)]="cat.id" disabled nz-input placeholder="Basic usage"/>
+          <p>ID:</p><input [ngModel]="cat.id"  nz-input placeholder="Basic usage"/>
           <p>Name:</p> <input [(ngModel)]="cat.name" nz-input placeholder="Basic usage" type="text" max="100" required>
           <p>Color:</p> <input [(ngModel)]="cat.color" nz-input placeholder="Basic usage" type="text" max="100" required >
         </ng-container>
