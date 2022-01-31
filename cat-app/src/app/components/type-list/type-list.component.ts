@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Cats} from 'src/app/model/cats.model';
 import {TypeService} from 'src/app/services/type.service.spec';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-type-list',
@@ -11,28 +11,33 @@ import {Router} from "@angular/router";
 })
 export class TypeListComponent implements OnInit {
   cats: Cats[];
-  message = '';
-  currentIndex = -1;
   name: '';
-  currentProduct = null;
   submitted = false;
   isVisible = false;
+  isVisible2 = false;
+  isVisible3 = false;
   isOkLoading = false;
   cat = {
+    id : null,
     name: '',
-    color: ''
+    color: '',
   };
-  constructor(private router: Router,private typeService: TypeService) {
+
+  constructor(private router: Router, private typeService: TypeService, private route: ActivatedRoute,) {
   }
 
   ngOnInit(): void {
+
     this.retrieveT();
   }
 
   retrieveT(): void {
     this.typeService.getAll()
-      .subscribe(data => this.cats = data)
+      .subscribe(data =>{
+        this.cats = data
+      })
   }
+
   createCats(): void {
     const data = {
       name: this.cat.name,
@@ -50,9 +55,10 @@ export class TypeListComponent implements OnInit {
         });
   }
 
-  newProduct(): void {
+  newCat(): void {
     this.submitted = false;
     this.cat = {
+      id : null,
       name: '',
       color: ''
     };
@@ -67,34 +73,11 @@ export class TypeListComponent implements OnInit {
         });
   }
 
-  updateCat(status): void {
-    const data = {
-      title: this.currentProduct.title,
-      description: this.currentProduct.description,
-      published: status
-    };
-
-    this.typeService.update(this.currentProduct.id, data)
-      .subscribe(
-        response => {
-          this.currentProduct.published = status;
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  updateTutorial(): void {
-    this.typeService.update(this.currentProduct.id, this.currentProduct)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.message = 'The tutorial was updated successfully!';
-        },
-        error => {
-          console.log(error);
-        });
+  catsDetails(id: number) {
+    this.typeService.getDetails(id).subscribe((data: Cats)=>{
+      console.log(data)
+      this.cat = data;
+    });
   }
 
   deleteTutorial(id: number): void {
@@ -102,7 +85,8 @@ export class TypeListComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.cats = response;
+          this.cats = this.cats.filter(item => item.id !== id);
+          console.log('Post deleted successfully!');
         });
   }
 
@@ -110,10 +94,26 @@ export class TypeListComponent implements OnInit {
     this.isVisible = true;
   }
 
-  handleOk(): void {
+  showModal2(): void {
+    this.isVisible2 = true;
+  }
+
+  showModal3(): void {
+    this.isVisible3 = true;
+  }
+
+  handleOk2(): void {
     this.isOkLoading = true;
     setTimeout(() => {
-      this.isVisible = false;
+      this.isVisible2 = false;
+      this.isOkLoading = false;
+    }, 3000);
+  }
+
+  handleOk3(): void {
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible2 = false;
       this.isOkLoading = false;
     }, 3000);
   }
@@ -122,4 +122,28 @@ export class TypeListComponent implements OnInit {
     this.isVisible = false;
   }
 
+  handleCancel2(): void {
+    this.isVisible2 = false;
+  }
+
+  handleCancel3(): void {
+    this.isVisible3 = false;
+  }
+
+  updateCats(id :number): void {
+    const data = {
+      name: this.cat.name,
+      color: this.cat.color
+    };
+
+    this.typeService.update(id,data)
+      .subscribe(
+        response => {
+          console.log(response);
+         this.cat = response
+        },
+        error => {
+          console.log(error);
+        });
+  }
 }

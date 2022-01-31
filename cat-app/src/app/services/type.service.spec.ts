@@ -19,6 +19,10 @@ export class TypeService {
     return this.http.get<Cats[]>(id);
   }
 
+  getDetails(id : any) : Observable<any> {
+    return this.http.get(`${baseUrl}/${id}`);
+  }
+
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }

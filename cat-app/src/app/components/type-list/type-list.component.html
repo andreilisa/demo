@@ -1,12 +1,11 @@
-<div class="col-md-8">
+<div class="col-md-8" xmlns="http://www.w3.org/1999/html">
   <div class="input-group mb-3">
     <input [(ngModel)]="name" class="form-control"
            placeholder="Search"
            type="text"
     />
-    <button (click)="searchByName()" class="btn btn-outline-secondary" nz-button
-            nzType="primary"
-            style="color: blue">
+    <button (click)="searchByName()" nz-button nzType="primary">
+      <i nz-icon nzType="search"></i>
       Search
     </button>
     <button (click)="showModal()" nz-button nzType="primary" style="margin-left:1200px;color: blue">
@@ -23,32 +22,19 @@
           <div class="submit-form">
             <div *ngIf="!submitted">
               <div class="form-group">
-                <label for="name">Name</label>
-                <input
-                  [(ngModel)]="cat.name"
-                  class="form-control"
-                  id="name"
-                  name="name"
-                  required
-                  type="text"
-                />
+                <label>Name</label>
+                <input [(ngModel)]="cat.name" nz-input nzSize="default" placeholder="default size"/>
               </div>
 
               <div class="form-group">
-                <label for="color">Color</label>
-                <input
-                  [(ngModel)]="cat.color"
-                  class="form-control"
-                  id="color"
-                  name="color"
-                  required
-                />
+                <label>Color</label>
+                <input [(ngModel)]="cat.color" nz-input nzSize="default" placeholder="default size"/>
               </div>
             </div>
 
             <div *ngIf="submitted">
               <h3>You successfully created a cat!</h3>
-              <button (click)="newProduct()" class="btn btn-success">New..</button>
+              <button (click)="newCat()" nz-button nzType="primary">New</button>
             </div>
           </div>
         </div>
@@ -67,15 +53,36 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let cat of cats">
-    <td>{{cat.id}}</td>
-    <td>{{cat.name}}</td>
-    <td>{{cat.color}}</td>
-    <i nz-icon nzTheme="outline" nzType="eye" style="padding-right: 2em"></i>
-    <i (click)="updateTutorial()" nz-icon nzTheme="outline" nzType="edit" style="padding-right: 2em"></i>
-    <i (click)="deleteTutorial(cat.id)" nz-icon nzTheme="outline" nzType="delete" style="padding-right: 2em"></i>
-    <nz-divider nzType="vertical"></nz-divider>
+  <tr *ngFor="let catt of cats; let i = index">
+    <td>{{catt.id}}</td>
+    <td>{{catt.name}}</td>
+    <td>{{catt.color}}</td>
 
+    <i (click)="showModal2(); catsDetails(cats[i].id)" nz-icon nzTheme="outline" nzType="eye"
+       style="padding-right: 2em">
+      <nz-modal (nzOnCancel)="handleCancel2()" (nzOnOk)="handleOk2()" [(nzVisible)]="isVisible2" nzTitle="View">
+        <ng-container *nzModalContent>
+          <p>Name:</p> <input [(ngModel)]="cat.id" disabled nz-input placeholder="Basic usage"/>
+          <p>Name:</p> <input [(ngModel)]="cat.name" disabled nz-input placeholder="Basic usage"/>
+          <p>Color:</p> <input [(ngModel)]="cat.color" disabled nz-input placeholder="Basic usage"/>
+        </ng-container>
+      </nz-modal>
+    </i>
+    <i (click)="showModal3();catsDetails(cats[i].id)" nz-icon nzTheme="outline" nzType="edit"
+       style="padding-right: 2em">
+      <nz-modal (nzOnCancel)="handleCancel3()" (nzOnOk)="updateCats(cat.id)" [(nzVisible)]="isVisible3" nzTitle="View">
+        <ng-container *nzModalContent>
+          <p>ID:</p><input [(ngModel)]="cat.id" disabled nz-input placeholder="Basic usage"/>
+          <p>Name:</p> <input [(ngModel)]="cat.name" nz-input placeholder="Basic usage"/>
+          <p>Color:</p> <input [(ngModel)]="cat.color" nz-input placeholder="Basic usage"/>
+        </ng-container>
+      </nz-modal>
+    </i>
+    <i (click)="deleteTutorial(catt.id)" nz-icon nzTheme="outline" nzType="delete" style="padding-right: 2em"></i>
+    <nz-divider nzType="vertical"></nz-divider>
   </tr>
   </tbody>
 </nz-table>
+<div>
+  <nz-pagination [nzPageIndex]="1" [nzPageSize]="15" [nzTotal]="50"></nz-pagination>
+</div>

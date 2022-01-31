@@ -5,12 +5,14 @@ export class Cats{
   private _name: string;
   private _color: string;
   private _type: Type;
+  private _published: boolean
 
-  constructor( id:number,name:string, color:string, type:Type) {
+  constructor( id:number,name:string, color:string, type:Type, published:boolean) {
     this._id = id;
     this._color = color;
     this._name = color;
     this._type = type;
+    this._published = published;
   }
 
 

@@ -43,7 +43,6 @@ public class CatResource {
         }
         cat1.name = cat.name;
         cat1.color = cat.color;
-        cat1.type = cat.type;
         return cat1;
     }
 

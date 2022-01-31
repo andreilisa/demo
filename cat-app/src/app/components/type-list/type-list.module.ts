@@ -8,11 +8,13 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzPaginationModule} from "ng-zorro-antd/pagination";
 
 
 
 @NgModule({
-  imports: [TypeListRountingModule, FormsModule, CommonModule, NzTableModule, NzDividerModule, NzIconModule, NzModalModule, NzButtonModule],
+  imports: [TypeListRountingModule, FormsModule, CommonModule, NzTableModule, NzDividerModule, NzIconModule, NzModalModule, NzButtonModule, NzInputModule, NzPaginationModule],
   declarations: [TypeListComponent],
   exports: [TypeListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

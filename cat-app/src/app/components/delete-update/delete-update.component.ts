@@ -11,7 +11,7 @@ import {Cats} from "../../model/cats.model";
 export class DeleteUpdateComponent implements OnInit {
   currentCat = null;
   message = '';
-  private cats: Cats[];
+  public cats: Cats[];
 
   constructor(
     private typeService: TypeService,
