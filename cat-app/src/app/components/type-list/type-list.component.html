@@ -23,12 +23,12 @@
             <div *ngIf="!submitted">
               <div class="form-group">
                 <label>Name</label>
-                <input [(ngModel)]="cat.name" nz-input nzSize="default" placeholder="default size"/>
+                <input [(ngModel)]="cat.name" nz-input nzSize="default" placeholder="name"/>
               </div>
 
               <div class="form-group">
                 <label>Color</label>
-                <input [(ngModel)]="cat.color" nz-input nzSize="default" placeholder="default size"/>
+                <input [(ngModel)]="cat.color" nz-input nzSize="default" placeholder="color"/>
               </div>
             </div>
 
@@ -62,9 +62,9 @@
        style="padding-right: 2em">
       <nz-modal (nzOnCancel)="handleCancel2()" (nzOnOk)="handleOk2()" [(nzVisible)]="isVisible2" nzTitle="View">
         <ng-container *nzModalContent>
-          <p>Name:</p> <input [ngModel]="cat.id"  nz-input placeholder="Basic usage"/>
-          <p>Name:</p> <input [ngModel]="cat.name"  nz-input placeholder="Basic usage"/>
-          <p>Color:</p> <input [ngModel]="cat.color"  nz-input placeholder="Basic usage"/>
+          <p>ID:</p> <input [ngModel]="cat.id"  nz-input placeholder="Id"/>
+          <p>Name:</p> <input [ngModel]="cat.name"  nz-input placeholder="Name"/>
+          <p>Color:</p> <input [ngModel]="cat.color"  nz-input placeholder="Color"/>
         </ng-container>
       </nz-modal>
     </i>
