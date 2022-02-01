@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Cats } from '../model/cats.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Cats} from '../model/cats.model';
 
 const baseUrl = '/rest';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TypeService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAll(): Observable<Cats[]> {
     return this.http.get<Cats[]>(baseUrl);
@@ -19,7 +21,7 @@ export class TypeService {
     return this.http.get<Cats[]>(id);
   }
 
-  getDetails(id : any) : Observable<any> {
+  getDetails(id: any): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }
 

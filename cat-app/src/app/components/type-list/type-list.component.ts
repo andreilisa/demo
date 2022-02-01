@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Cats} from 'src/app/model/cats.model';
 import {TypeService} from 'src/app/services/type.service.spec';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-type-list',
@@ -23,7 +23,7 @@ export class TypeListComponent implements OnInit {
     color: '',
   };
   p: number = 1;
-  constructor(private router: Router, private typeService: TypeService, private route: ActivatedRoute,) {
+  constructor(private router: Router, private typeService: TypeService) {
   }
 
   ngOnInit(): void {
@@ -48,9 +48,6 @@ export class TypeListComponent implements OnInit {
         response => {
           console.log(response);
           this.submitted = true;
-        },
-        error => {
-          console.log(error);
         });
   }
 
@@ -91,7 +88,6 @@ export class TypeListComponent implements OnInit {
 
   showModal(): void {
     this.isVisible = true;
-
   }
 
   showModal2(): void {
@@ -135,12 +131,6 @@ export class TypeListComponent implements OnInit {
         response => {
           console.log(response);
          this.cat = response
-        },
-        error => {
-          console.log(error);
         });
-  }
-  onPageIndexChange(cats: Array<any>) {
-
   }
 }
