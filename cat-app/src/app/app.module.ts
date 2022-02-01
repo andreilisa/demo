@@ -15,6 +15,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NgxPaginationModule} from "ngx-pagination";
 registerLocaleData(en);
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ registerLocaleData(en);
     NzTableModule,
     NzInputModule,
     NzButtonModule,
+    NgxPaginationModule
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],

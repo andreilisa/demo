@@ -10,11 +10,13 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzPaginationModule} from "ng-zorro-antd/pagination";
+import {NgxPaginationModule} from "ngx-pagination";
+import {NzGridModule} from "ng-zorro-antd/grid";
 
 
 
 @NgModule({
-  imports: [TypeListRountingModule, FormsModule, CommonModule, NzTableModule, NzDividerModule, NzIconModule, NzModalModule, NzButtonModule, NzInputModule, NzPaginationModule],
+  imports: [TypeListRountingModule, FormsModule, CommonModule, NzTableModule, NzDividerModule, NzIconModule, NzModalModule, NzButtonModule, NzInputModule, NzPaginationModule, NgxPaginationModule, NzGridModule],
   declarations: [TypeListComponent],
   exports: [TypeListComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

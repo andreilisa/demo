@@ -22,11 +22,11 @@ export class TypeListComponent implements OnInit {
     name: '',
     color: '',
   };
+  p: number = 1;
   constructor(private router: Router, private typeService: TypeService, private route: ActivatedRoute,) {
   }
 
   ngOnInit(): void {
-
     this.retrieveT();
   }
 
@@ -139,5 +139,8 @@ export class TypeListComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+  onPageIndexChange(cats: Array<any>) {
+
   }
 }

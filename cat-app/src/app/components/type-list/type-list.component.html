@@ -1,46 +1,46 @@
-<div class="col-md-8" xmlns="http://www.w3.org/1999/html">
-  <div class="input-group mb-3">
-    <input [(ngModel)]="name" class="form-control"
-           placeholder="Search"
-           type="text"
-    />
-    <button (click)="searchByName()" nz-button nzType="primary">
-      <i nz-icon nzType="search"></i>
-      Search
-    </button>
-    <button (click)="showModal()" nz-button nzType="primary" style="margin-left:1200px;color: blue">
-      <span>New Cat</span>
-    </button>
-    <nz-modal
-      (nzOnCancel)="handleCancel()"
-      (nzOnOk)="createCats()"
-      [(nzVisible)]="isVisible"
-      [nzOkLoading]="isOkLoading"
-      nzTitle="New Cat">
-      <div *nzModalContent>
-        <div style="width: 500px; margin: auto;">
-          <div class="submit-form">
-            <div *ngIf="!submitted">
-              <div class="form-group">
-                <label>Name</label>
-                <input [(ngModel)]="cat.name" nz-input nzSize="default" placeholder="name" type="text" max="100" required/>
-              </div>
-
-              <div class="form-group">
-                <label>Color</label>
-                <input [(ngModel)]="cat.color" nz-input nzSize="default" placeholder="color" type="text" max="100" required/>
-              </div>
+<div class="input-group mb-3">
+  <input [(ngModel)]="name" class="form-control"
+         placeholder="Search"
+         type="text"
+  />
+  <button (click)="searchByName()" nz-button nzType="primary">
+    <i nz-icon nzType="search"></i>
+    Search
+  </button>
+  <button (click)="showModal()" nz-button nzType="primary" style="margin-left:1200px;color: blue">
+    <span>New Cat</span>
+  </button>
+  <nz-modal
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="createCats()"
+    [(nzVisible)]="isVisible"
+    [nzOkLoading]="isOkLoading"
+    nzTitle="New Cat">
+    <div *nzModalContent>
+      <div style="width: 500px; margin: auto;">
+        <div class="submit-form">
+          <div *ngIf="!submitted">
+            <div class="form-group">
+              <label>Name : </label>
+              <input [(ngModel)]="cat.name" max="100" nz-col nz-input nzSize="default" nzSpan="8" placeholder="name"
+                     required type="text"/>
             </div>
 
-            <div *ngIf="submitted">
-              <h3>You successfully created a cat!</h3>
-              <button (click)="newCat()" nz-button nzType="primary">New</button>
+            <div class="form-group">
+              <label>Color : </label>
+              <input [(ngModel)]="cat.color" max="100" nz-col nz-input nzSize="default" nzSpan="8"
+                     placeholder="color" required type="text"/>
             </div>
+          </div>
+
+          <div *ngIf="submitted">
+            <h3>You successfully created a cat!</h3>
+            <button (click)="newCat()" nz-button nzType="primary">New</button>
           </div>
         </div>
       </div>
-    </nz-modal>
-  </div>
+    </div>
+  </nz-modal>
 </div>
 
 <nz-table>
@@ -53,7 +53,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let catt of cats; let i = index" style="">
+  <tr *ngFor="let catt of cats | paginate: { itemsPerPage: 3, currentPage: p } ; let i = index">
     <td>{{catt.id}}</td>
     <td>{{catt.name}}</td>
     <td>{{catt.color}}</td>
@@ -63,9 +63,9 @@
         font-size: 20px ">
       <nz-modal (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk2()" [(nzVisible)]="isVisible2" nzTitle="View">
         <ng-container *nzModalContent>
-          <p>ID:</p> <input [ngModel]="cat.id"  nz-input placeholder="Id"/>
-          <p>Name:</p> <input [ngModel]="cat.name"  nz-input placeholder="Name"/>
-          <p>Color:</p> <input [ngModel]="cat.color"  nz-input placeholder="Color"/>
+          <p>ID:</p> <input [ngModel]="cat.id" nz-input placeholder="Id"/>
+          <p>Name:</p> <input [ngModel]="cat.name" nz-input placeholder="Name"/>
+          <p>Color:</p> <input [ngModel]="cat.color" nz-input placeholder="Color"/>
         </ng-container>
       </nz-modal>
     </i>
@@ -74,9 +74,10 @@
         font-size: 20px;">
       <nz-modal (nzOnCancel)="handleCancel()" (nzOnOk)="updateCats(cat.id)" [(nzVisible)]="isVisible3" nzTitle="View">
         <ng-container *nzModalContent>
-          <p>ID:</p><input [ngModel]="cat.id"  nz-input placeholder="Basic usage"/>
-          <p>Name:</p> <input [(ngModel)]="cat.name" nz-input placeholder="Basic usage" type="text" max="100" required>
-          <p>Color:</p> <input [(ngModel)]="cat.color" nz-input placeholder="Basic usage" type="text" max="100" required >
+          <p>ID:</p><input [ngModel]="cat.id" nz-input placeholder="Basic usage"/>
+          <p>Name:</p> <input [(ngModel)]="cat.name" max="100" nz-input placeholder="Basic usage" required type="text">
+          <p>Color:</p> <input [(ngModel)]="cat.color" max="100" nz-input placeholder="Basic usage" required
+                               type="text">
         </ng-container>
       </nz-modal>
     </i>
@@ -86,6 +87,6 @@
   </tr>
   </tbody>
 </nz-table>
-<div>
-  <nz-pagination [nzPageIndex]="1" [nzPageSize]="15" [nzTotal]="50"></nz-pagination>
+<div nz-row nzJustify="end">
+  <nz-pagination (nzPageIndexChange)="p = $event" [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
 </div>
